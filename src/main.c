@@ -70,15 +70,32 @@ int main(int argc, char **argv)
 	SDL_Surface *tmp;
 	char passwd[20] = {0};
 	char pwd[20] = "aman";
-	char ch;
+	char ch, show_usage = 0;
 	int i = 0, display = 0;
 	int kill = 0, mouse = 0;
 	pthread_t tCaptureThread;
 	VIDEO_CONFIG *config = getConfig();
 
-	if(argc == 2) {
-		if(strlen(argv[1]) < 20)
+	if(argc > 2) {
+		show_usage = 1;
+	} else if(argc == 2) {
+		if(!strcmp(argv[1],"-h")) {
+			show_usage = 1;
+		} else if(strlen(argv[1]) < 20) {
 			strcpy(pwd, argv[1]);
+		}
+	}
+	if(show_usage) {
+		printf("Usage :\n");
+		printf("\t%s <optional argument>\n", argv[0]);
+		printf("\t<options> :\n");
+		printf("\t\t1. -h       : Prints this and exit.\n");
+		printf("\t\t2. <passwd> : User can provide new password at each run.\n");
+		printf("\t\t              Password length should be less than 20.\n");
+		printf("\t\t              Default password is 'aman', if user doesn't provide any arguments.\n");
+		printf("\nPress 'q', if wrong password is entered. It clears the input buffer.\n");
+
+		return 1;
 	}
 	SDL_Init(SDL_INIT_VIDEO);
 	screen = SDL_SetVideoMode(SCREEN_W, SCREEN_H, 32,
