@@ -22,4 +22,4 @@ Running
 
 Screen-shot
 -----------
-![screenshot](https://github.com/aman2467/lock_screen/utils/screenshot.png)
+![screenshot](https://github.com/aman2467/lock_screen/blob/master/utils/screenshot.png)
