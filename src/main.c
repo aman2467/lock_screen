@@ -28,7 +28,8 @@ VIDEO_CONFIG config = {
 	640,
 	480,
 	640*480*2,
-	0};
+	0,
+	1};
 
 VIDEO_CONFIG *getConfig(void)
 {
